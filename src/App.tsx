@@ -12,7 +12,7 @@ function App() {
         <div className="modal-box">
           <h3 className="font-bold text-lg">Modal from DaisyUI</h3>
           <p className="py-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
+            Lorem ipsum dolor sit amet consectetur adipisicing elit.
           </p>
           <div className="modal-action">
             <label htmlFor="my-modal" className="btn">
