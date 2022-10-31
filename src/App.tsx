@@ -2,7 +2,7 @@ import "./App.css";
 
 function App() {
   return (
-    <div style={{ margin: "auto", width: "fit-content" }}>
+    <div id="app" style={{ margin: "auto", width: "fit-content" }}>
       <p className="text-3xl font-bold underline">Hello VOID! From kaleb</p>
       <label className="btn btn-primary" htmlFor="my-modal">
         Button
