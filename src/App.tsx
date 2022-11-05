@@ -1,26 +1,20 @@
-import "./App.css";
+import SignupModal from "./components/shared/SignupModal";
+import { useState } from "react";
 
 function App() {
+  const [modal, setModal] = useState(false);
   return (
-    <div style={{ margin: "auto", width: "fit-content" }}>
-      <p className="text-3xl font-bold underline">Hello VOID! From kaleb</p>
-      <label className="btn btn-primary" htmlFor="my-modal">
-        Button
+    <div className="m-auto w-fit">
+      <p className="text-3xl font-bold">Join MClubs</p>
+      <label
+        className="btn btn-primary font-lexend"
+        htmlFor="my-modal-3"
+        onClick={() => setModal(true)}
+      >
+        Login
       </label>
-      <input type="checkbox" id="my-modal" className="modal-toggle" />
-      <div className="modal">
-        <div className="modal-box">
-          <h3 className="font-bold text-lg">Modal from DaisyUI</h3>
-          <p className="py-4">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Quisquam
-          </p>
-          <div className="modal-action">
-            <label htmlFor="my-modal" className="btn">
-              Yay!
-            </label>
-          </div>
-        </div>
-      </div>
+
+      <SignupModal isOpen={modal} onClose={() => setModal((prev) => !prev)} />
     </div>
   );
 }
