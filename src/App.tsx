@@ -4,6 +4,7 @@ import { useState } from "react";
 function App() {
   const [modal, setModal] = useState(false);
   return (
+
     <div className="m-auto w-fit">
       <p className="text-3xl font-bold">Join MClubs</p>
       <label
@@ -15,6 +16,7 @@ function App() {
       </label>
 
       <SignupModal isOpen={modal} onClose={() => setModal((prev) => !prev)} />
+
     </div>
   );
 }
