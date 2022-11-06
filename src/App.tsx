@@ -14,7 +14,7 @@ function App() {
         Login
       </label>
 
-      <SignupModal isOpen={modal} onClose={() => setModal((prev) => !prev)} />
+      <SignupModal isOpen={modal} onClose={() => setModal(false)} />
     </div>
   );
 }
