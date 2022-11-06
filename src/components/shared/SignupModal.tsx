@@ -7,12 +7,12 @@ const SignupModal = ({ isOpen, onClose }: SignupModalProps) => {
   return (
     <div>
       <label
-        htmlFor="my-modal-3"
+        htmlFor="SignupModal"
         className={`modal cursor-pointer ${isOpen && "modal-open"}`}
       >
         <div className="modal-box relative">
           <label
-            htmlFor="my-modal-3"
+            htmlFor="SignupModal"
             onClick={() => onClose()}
             className="btn btn-sm btn-circle absolute right-2 top-2 text-black bg-white border-none hover:bg-gray-400"
           >

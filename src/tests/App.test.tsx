@@ -8,11 +8,9 @@ test("renders button modal", async () => {
   // Example test
   render(<App />);
   // get button label
-  const button = screen.getByLabelText("Button");
+  const button = screen.getByText("Login");
   // click button
   userEvent.click(button);
   // get modal title
-  const modalTitle = screen.getByRole("heading", {
-    name: "Modal from DaisyUI",
-  });
+  const modalTitle = screen.getByText("Join MClubs");
 });

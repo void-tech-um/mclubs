@@ -2,9 +2,8 @@ import SignupModal from "./components/shared/SignupModal";
 import { useState } from "react";
 
 function App() {
-  const [modal, setModal] = useState(false);
+  const [modal, setModal] = useState<boolean>(false);
   return (
-
     <div className="m-auto w-fit">
       <p className="text-3xl font-bold">Join MClubs</p>
       <label
@@ -16,7 +15,6 @@ function App() {
       </label>
 
       <SignupModal isOpen={modal} onClose={() => setModal((prev) => !prev)} />
-
     </div>
   );
 }
