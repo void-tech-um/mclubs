@@ -1,3 +1,4 @@
+import React from "react";
 import AuthModal from "./components/shared/AuthModal";
 import { useState } from "react";
 

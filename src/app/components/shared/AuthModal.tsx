@@ -1,3 +1,5 @@
+import * as React from "react";
+
 interface AuthModalProps {
   isOpen: boolean;
   onClose: () => void;
