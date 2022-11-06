@@ -19,7 +19,7 @@ const SignupModal = ({ isOpen, onClose }: SignupModalProps) => {
             ✕
           </label>
           <h3 className="text-4xl font-bold mx-auto w-fit text-primary">
-            Join <a className="text-secondary">M</a>Clubs
+            Join <span className="text-secondary">M</span>Clubs
           </h3>
           <div className="flex justify-center mt-5 mb-5 font-semibold ">
             <ul className="list-disc font-inter list-outside">
