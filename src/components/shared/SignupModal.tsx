@@ -34,7 +34,7 @@ const SignupModal = ({ isOpen, onClose }: SignupModalProps) => {
               Login with UMID
             </button>
             <button className="btn bg-primary text-white max-w-xs w-full hover:bg-white hover:text-primary font-inter text-base">
-              Create Account with UMID
+              Create an Account with your UM email
             </button>
           </div>
         </div>
