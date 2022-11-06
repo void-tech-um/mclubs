@@ -13,7 +13,7 @@ const SignupModal = ({ isOpen, onClose }: SignupModalProps) => {
         <div className="modal-box relative">
           <label
             htmlFor="SignupModal"
-            onClick={() => onClose()}
+            onClick={onClose}
             className="btn btn-sm btn-circle absolute right-2 top-2 text-black bg-white border-none hover:bg-gray-400"
           >
             ✕
