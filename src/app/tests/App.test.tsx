@@ -7,10 +7,12 @@ import userEvent from "@testing-library/user-event";
 test("renders button modal", async () => {
   // Example test
   render(<App />);
-  // get button label
-  const button = screen.getByText("Login");
+  // get button
+  const button = screen.getByRole("button", { name: /login/i });
   // click button
   userEvent.click(button);
-  // get modal title
-  const modalTitle = screen.getByText("Join MClubs");
+  // get modal element
+  const modal = screen.getByText(/join mclubs/i);
+  // check if modal is visible
+  expect(modal).toBeVisible();
 });
