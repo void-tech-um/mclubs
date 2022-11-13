@@ -1,22 +1,21 @@
 import React from "react";
-import AuthModal from "./components/shared/AuthModal";
-import { useState } from "react";
+import Layout from "./components/shared/layout/Layout";
+import { Routes, Route, Outlet, Link } from "react-router-dom";
+import Home from "./pages/home/Home";
+import NotFound from "./components/shared/NotFound";
+import ClubRoutes from "./routes/clubs/ClubRoutes";
+import UserRoutes from "./routes/users/UserRoutes";
 
 function App() {
-  const [modal, setModal] = useState<boolean>(false);
   return (
-    <div className="m-auto w-fit">
-      <p className="text-3xl font-bold">Join MClubs</p>
-      <label
-        className="btn btn-primary font-lexend"
-        htmlFor="my-modal-3"
-        onClick={() => setModal(true)}
-      >
-        Login
-      </label>
-
-      <AuthModal isOpen={modal} onClose={() => setModal(false)} />
-    </div>
+    <Layout>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/clubs/*" element={<ClubRoutes />} />
+        <Route path="/users/*" element={<UserRoutes />} />
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </Layout>
   );
 }
 
