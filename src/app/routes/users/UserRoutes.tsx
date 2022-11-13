@@ -1,12 +1,11 @@
 import React from "react";
 import { Routes, Route } from "react-router-dom";
-import SignIn from "../../pages/signin/SignIn";
-import SignUp from "../../pages/signup/SignUp";
+
+import Profile from "../../pages/users/Profile";
 function UserRoutes() {
   return (
     <Routes>
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
+      <Route path=":uid" element={<Profile />} />
     </Routes>
   );
 }

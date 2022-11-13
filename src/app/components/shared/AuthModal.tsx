@@ -1,4 +1,5 @@
 import * as React from "react";
+import Button from "./Button";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -27,12 +28,8 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
           </ul>
         </div>
         <div className="flex flex-col justify-center items-center gap-4 ">
-          <button className="btn btn-outline max-w-xs w-full text-primary hover:bg-primary font-inter text-base">
-            Login with your UM email
-          </button>
-          <button className="btn bg-primary text-white max-w-xs w-full hover:bg-white hover:text-primary font-inter text-base">
-            Create an Account
-          </button>
+          <Button outlined>Login</Button>
+          <Button>Create an Account</Button>
         </div>
       </div>
     </div>
