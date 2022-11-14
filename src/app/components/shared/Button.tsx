@@ -1,6 +1,6 @@
 import React from "react";
 
-interface childrenTypes {
+interface IButtonProps {
   children: React.ReactNode;
   outlined?: boolean;
   className?: string;
