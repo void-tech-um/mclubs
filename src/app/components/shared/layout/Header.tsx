@@ -1,7 +1,9 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import AuthModal from "../AuthModal";
 
 function Header() {
+  const [showModal, setShowModal] = useState<boolean>(false);
   const toggleMenu = (): void => {
     try {
       (document.activeElement as HTMLElement).blur();
@@ -19,13 +21,13 @@ function Header() {
           Clubs
         </Link>
         <Link
-          to="/clubs"
+          to="/"
           className="btn btn-ghost normal-case text-xl font-semibold text-black"
         >
           Clubs
         </Link>
         <Link
-          to="/users/signup"
+          to="/clubs/new"
           className="btn btn-ghost normal-case text-xl font-semibold text-black"
         >
           Register Your Club
@@ -48,15 +50,26 @@ function Header() {
             <li onClick={toggleMenu}>
               <Link to="/">Settings</Link>
             </li>
-            <li onClick={toggleMenu}>
-              <Link to="/users/signin">Login</Link>
+            <li
+              onClick={() => {
+                toggleMenu;
+                setShowModal(true);
+              }}
+            >
+              <span>Login</span>
             </li>
-            <li onClick={toggleMenu}>
-              <Link to="/users/signup">Signup</Link>
+            <li
+              onClick={() => {
+                toggleMenu;
+                setShowModal(true);
+              }}
+            >
+              <span>Signup</span>
             </li>
           </ul>
         </div>
       </div>
+      <AuthModal isOpen={showModal} onClose={() => setShowModal(false)} />
     </div>
   );
 }
