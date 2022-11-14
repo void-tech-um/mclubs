@@ -7,7 +7,7 @@ interface IButtonProps {
   onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-function Button({ children, outlined, className, onClick }: childrenTypes) {
+function Button({ children, outlined, className, onClick }: IButtonProps) {
   return (
     <>
       {outlined ? (
