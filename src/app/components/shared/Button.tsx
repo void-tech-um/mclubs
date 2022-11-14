@@ -1,23 +1,26 @@
 import React from "react";
 
-interface childrenTypes {
+interface IButtonProps {
   children: React.ReactNode;
   outlined?: boolean;
-  size?: "sm" | "lg" | "xs";
+  className?: string;
+  onClick?: (e: React.MouseEvent<HTMLElement>) => void;
 }
 
-function Button({ children, outlined, size }: childrenTypes) {
+function Button({ children, outlined, className, onClick }: IButtonProps) {
   return (
     <>
       {outlined ? (
         <button
-          className={`btn btn-${size} btn-outline max-w-xs w-full text-primary hover:bg-primary font-inter text-base`}
+          className={`btn ${className} btn-outline max-w-xs w-full text-primary hover:bg-primary font-inter text-base`}
+          onClick={onClick}
         >
           {children}
         </button>
       ) : (
         <button
-          className={`btn bg-primary btn-${size} text-white max-w-xs w-full hover:bg-white hover:text-primary font-inter text-base`}
+          className={`btn bg-primary ${className} text-white max-w-xs w-full hover:bg-white hover:text-primary font-inter text-base`}
+          onClick={onClick}
         >
           {children}
         </button>
