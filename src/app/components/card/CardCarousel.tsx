@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef, useEffect } from "react";
 import Card from "./Card";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
@@ -19,45 +19,55 @@ interface CardObject {
 }
 
 function CardCarousel({ clubsInfo, numCards }: CardCarouselProps) {
-  const [index, setIndex] = useState(0);
+  const [width, setWidth] = useState<number>(0);
+  const carousel = useRef<HTMLHeadingElement>(null);
+
+  useEffect(() => {
+    console.log(carousel.current!.scrollWidth, carousel.current!.offsetWidth);
+    setWidth(carousel.current!.scrollWidth - carousel.current!.offsetWidth);
+  }, []);
+
   return (
-    <div className="flex flex-row gap-4 items-center overflow-hidden py-10 relative">
+    <div className="flex flex-row items-center relative justify-around overflow-hidden">
       <FontAwesomeIcon
         icon={faChevronLeft}
         className="text-4xl text-gray-500 absolute left-0 z-10"
-        onClick={() => {
-          setIndex((prev) => prev - numCards!);
-        }}
+        // onClick={() => {
+        //   setIndex((prev) => prev - numCards!);
+        // }}
       />
-      {/* 
-      Another possible method but not sure how to aminate the cards
-      {clubsInfo
-          .slice(index * numCards!, index * numCards! + numCards!)
-          .map((club, i) => {
-            //key is i for now
-            return <Card clubInfo={club} key={i || club.clubId} />;
-          })} */}
-      <AnimatePresence>
-        {clubsInfo.map((club, i) => {
-          if (i >= index && i < index + 2 * numCards!) {
+      <motion.div
+        ref={carousel}
+        className="carousel"
+        whileTap={{ cursor: "grabbing" }}
+      >
+        <motion.div
+          drag="x"
+          dragConstraints={{ right: 0, left: -width }}
+          className="flex flex-row gap-4 py-10"
+        >
+          {clubsInfo.map((club, i) => {
             //key is i for now
             return (
-              <Card
-                clubInfo={club}
-                key={i || club.clubId}
-                animate
-                numCards={4}
-              />
+              <motion.div
+                className={`item ${i === 0 && "ml-8"} ${
+                  i === clubsInfo.length - 1 && "mr-8"
+                }`}
+                key={i}
+              >
+                <Card clubInfo={club} key={i || club.clubId} />
+              </motion.div>
             );
-          }
-        })}
-      </AnimatePresence>
+          })}
+        </motion.div>
+      </motion.div>
+
       <FontAwesomeIcon
         icon={faChevronRight}
         className="text-4xl text-gray-500 absolute right-0 z-10 opacity-80"
-        onClick={() => {
-          setIndex((prev) => prev + numCards!);
-        }}
+        // onClick={() => {
+        //   setIndex((prev) => prev + numCards!);
+        // }}
       />
     </div>
   );

@@ -13,24 +13,11 @@ interface CardObject {
 }
 interface CardProps {
   clubInfo: CardObject;
-  numCards?: number;
-  animate?: boolean;
 }
 
-function Card({ clubInfo, animate, numCards }: CardProps) {
-  const animationProps = animate
-    ? {
-        intial: { x: numCards! * 13 * 16 + numCards! * 4 },
-        animate: { x: 0 },
-        exit: { x: -(numCards! * 13 * 16 + numCards! * 4) },
-        transition: { duration: 4, type: "tween" },
-      }
-    : {};
+function Card({ clubInfo }: CardProps) {
   return (
-    <motion.div
-      className="card card-compact w-52 bg-base-100 shadow-xl shrink-0"
-      {...animationProps}
-    >
+    <div className="card card-compact w-52 bg-base-100 shadow-xl shrink-0">
       <Link to={`/clubs/${clubInfo.clubId}`}>
         <figure className="relative">
           {clubInfo.favorite && (
@@ -46,7 +33,7 @@ function Card({ clubInfo, animate, numCards }: CardProps) {
           <p>{clubInfo.description}</p>
         </div>
       </Link>
-    </motion.div>
+    </div>
   );
 }
 Card.defaultProps = {
