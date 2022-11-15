@@ -2,15 +2,8 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faStar } from "@fortawesome/free-solid-svg-icons";
-import { motion } from "framer-motion";
+import { CardObject } from "../../global/types";
 
-interface CardObject {
-  name: string;
-  clubId: string;
-  description: string;
-  image: string;
-  favorite?: boolean;
-}
 interface CardProps {
   clubInfo: CardObject;
 }
