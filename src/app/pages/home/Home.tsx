@@ -11,7 +11,7 @@ interface CardObject {
 }
 function Home() {
   const arr: { name: string; desc: string }[] = [
-    { name: "void", desc: "THis is the void club" },
+    { name: "void", desc: "This is the void club" },
   ];
   const info: CardObject[] = [
     {
@@ -129,6 +129,9 @@ function Home() {
           <div className="col-sm-6">Environmental Clubs</div>
         </div>
       </div> */}
+      <h1 className="col-sm-6">Top Picks</h1>
+      <CardCarousel clubsInfo={info} />
+      <h2 className="col-sm-6">Perfect for Fall</h2>
       <CardCarousel clubsInfo={info} />
     </div>
   );
