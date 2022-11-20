@@ -3,12 +3,16 @@ import { User } from "./models";
 /**
  * @desc Create a new user
  * @param {User} user
- * @returns {Promise<User | boolean>} Created user or false if user already exists
+ * @returns {Promise<User>} Created user or throw error if user already exists
  */
-export const createUser = async (user: User): Promise<User | boolean> => {
+export const createUser = async (user: User): Promise<User> => {
   /** @todo Implement the function */
   // Remove this return statement
-  return false; // This is to make the compiler happy
+  const newUser = await User.create(user);
+  if (!newUser) {
+    throw new Error("User already exists");
+  }
+  return newUser;
 };
 
 /**
@@ -16,8 +20,12 @@ export const createUser = async (user: User): Promise<User | boolean> => {
  * @param {User} user object
  * @returns {Promise<User | null>} Username or false if user does not exist or password is incorrect
  */
-export const loginUser = async (user: User): Promise<User | null> => {
+export const userExists = async (user: User): Promise<User> => {
   /** @todo Implement the function */
   // Remove this return statement
-  return null; // This is to make the compiler happy
+  const found = await User.findOne({ where: { username: user.username } });
+  if (!found) {
+    throw new Error("User does not exist");
+  }
+  return found;
 };

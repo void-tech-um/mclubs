@@ -3,6 +3,7 @@ import router from "./api";
 import dotenv from "dotenv";
 import cors from "cors";
 import path from "path";
+import db from "./models";
 
 // Load environment variables
 dotenv.config();
@@ -21,11 +22,11 @@ app.use(cors());
 // This allows us to send JSON data to our backend
 app.use(express.json());
 
+// Sync database
+db.sequelize.sync();
+
 // Tell our app to use the router we created
-// app.use("/api", router);
-app.get("/api/test", (req: express.Request, res: express.Response) => {
-  res.send("Hello World!");
-});
+app.use("/api", router);
 
 // Start the server
 app.listen(PORT, () => {
