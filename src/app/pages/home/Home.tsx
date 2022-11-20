@@ -2,6 +2,10 @@ import React, { useState } from "react";
 import AuthModal from "../../components/shared/AuthModal";
 import Card from "../../components/card/Card";
 import CardCarousel from "../../components/card/CardCarousel";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import {
+  faPlus
+} from "@fortawesome/free-solid-svg-icons";
 interface CardObject {
   name: string;
   clubId: string;
@@ -11,7 +15,7 @@ interface CardObject {
 }
 function Home() {
   const arr: { name: string; desc: string }[] = [
-    { name: "void", desc: "THis is the void club" },
+    { name: "void", desc: "This is the void club" },
   ];
   const info: CardObject[] = [
     {
@@ -129,6 +133,24 @@ function Home() {
           <div className="col-sm-6">Environmental Clubs</div>
         </div>
       </div> */}
+      <input type="text" placeholder="Search" className="input input-bordered input-white w-full max-w-xs ml-8 mt-10" />
+      <h1 className="text-primary ml-8 mt-10 text-small mb-4">Filters: 
+      <div className="dropdown">
+        <label tabIndex={0} className="btn m-1"><FontAwesomeIcon icon ={faPlus}/></label>
+         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
+        <li><a>Tech</a></li>
+         <li><a>Fun</a></li>
+     </ul>
+  </div>
+</h1>
+
+      <h2 className="text-primary ml-8 mt-10 text-xl"><strong>Top Picks</strong></h2>
+      <CardCarousel clubsInfo={info} />
+      <h3 className="text-primary ml-8 mt-10 text-xl"><strong>Perfect for Fall</strong></h3>
+      <CardCarousel clubsInfo={info} />
+      <h4 className="text-primary ml-8 mt-10 text-xl"><strong>New Clubs</strong></h4>
+      <CardCarousel clubsInfo={info} />
+      <h5 className="text-primary ml-8 mt-10 text-xl"><strong>Environmental Clubs</strong></h5>
       <CardCarousel clubsInfo={info} />
     </div>
   );
