@@ -3,8 +3,9 @@ import { Link } from "react-router-dom";
 import AuthModal from "../AuthModal";
 
 function Header() {
-  const [showModal, setShowModal] = useState<boolean>(true);
+  const [showModal, setShowModal] = useState<boolean>(false);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
+
   const toggleMenu = (): void => {
     try {
       (document.activeElement as HTMLElement).blur();

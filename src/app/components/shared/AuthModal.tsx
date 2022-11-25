@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useAuth } from "../auth/AuthContextProvider";
 import Button from "./Button";
 import { useForm } from "react-hook-form";
-import * as React from "react";
+import React, { useState } from "react";
 
 interface AuthModalProps {
   isOpen: boolean;
@@ -19,9 +19,15 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
     handleSubmit,
     formState: { errors },
   } = useForm<FormValues>();
-  console.log(errors);
   const [isLogin, setIsLogin] = useState(true);
-  const onSubmit = handleSubmit((data) => console.log(data));
+  const { login, signup } = useAuth();
+  const onSubmit = handleSubmit(async (data) => {
+    if (isLogin) {
+      await login(data);
+    } else {
+      await signup(data);
+    }
+  });
   return (
     <div className={`modal cursor-pointer ${isOpen && "modal-open"}`}>
       <div className="modal-box relative">
@@ -70,7 +76,7 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
           <label className="input-group flex-shrink  ">
             <span>Password</span>
             <input
-              type="text"
+              type="password"
               placeholder="password"
               className={`input input-bordered border-primary flex-shrink w-full ${
                 errors.password && "input-error"
@@ -79,8 +85,26 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
             />
           </label>
 
-          <Button outlined>Login</Button>
-          <Button>Create an Account</Button>
+          {isLogin ? (
+            <Button outlined>Login</Button>
+          ) : (
+            <Button>Create an Account</Button>
+          )}
+          {isLogin ? (
+            <h1
+              className="text-primary underline"
+              onClick={() => setIsLogin(false)}
+            >
+              Create an account instead
+            </h1>
+          ) : (
+            <h1
+              className="text-primary underline"
+              onClick={() => setIsLogin(true)}
+            >
+              Login
+            </h1>
+          )}
         </form>
       </div>
     </div>
