@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import AuthModal from "../AuthModal";
 
 function Header() {
-  const [showModal, setShowModal] = useState<boolean>(false);
+  const [showModal, setShowModal] = useState<boolean>(true);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
   const toggleMenu = (): void => {
     try {
@@ -14,7 +14,7 @@ function Header() {
   };
   return (
     <div
-      className={`sm:navbar bg-base-100 collapse  ${
+      className={`sm:navbar bg-base-100  ${
         openMenu ? "collapse-open" : "collapse-close"
       }`}
       tabIndex={0}
@@ -59,7 +59,7 @@ function Header() {
             </li>
             <li
               onClick={() => {
-                toggleMenu;
+                toggleMenu();
                 setShowModal(true);
               }}
             >
@@ -67,7 +67,7 @@ function Header() {
             </li>
             <li
               onClick={() => {
-                toggleMenu;
+                toggleMenu();
                 setShowModal(true);
               }}
             >
@@ -102,8 +102,12 @@ function Header() {
           </svg>
         </button>
       </div>
-      <div className="collapse-content sm:hidden">
-        <p className="flex flex-col items-start">
+      <div
+        className={`collapse-content sm:hidden ${
+          openMenu && "overflow-visible"
+        } `}
+      >
+        <div className="flex flex-col items-start">
           <Link
             to="/"
             className="btn btn-ghost normal-case text-xl font-semibold text-black "
@@ -117,7 +121,7 @@ function Header() {
             Register Your Club
           </Link>
           <div className="flex-none justify-self-end ml-3">
-            <div tabIndex={0} className="dropdown dropdown-end">
+            <div tabIndex={0} className="dropdown dropdown-bottom">
               <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full">
                   <img src="https://placeimg.com/80/80/people" />
@@ -135,7 +139,7 @@ function Header() {
                 </li>
                 <li
                   onClick={() => {
-                    toggleMenu;
+                    toggleMenu();
                     setShowModal(true);
                   }}
                 >
@@ -143,7 +147,7 @@ function Header() {
                 </li>
                 <li
                   onClick={() => {
-                    toggleMenu;
+                    toggleMenu();
                     setShowModal(true);
                   }}
                 >
@@ -152,7 +156,7 @@ function Header() {
               </ul>
             </div>
           </div>
-        </p>
+        </div>
       </div>
 
       {/* <div className="collapse-content">

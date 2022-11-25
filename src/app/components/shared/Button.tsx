@@ -12,14 +12,14 @@ function Button({ children, outlined, className, onClick }: IButtonProps) {
     <>
       {outlined ? (
         <button
-          className={`btn ${className} btn-outline max-w-xs w-full text-primary hover:bg-primary font-inter text-base`}
+          className={`btn ${className} btn-outline max-w-sm w-full text-primary hover:bg-primary font-inter text-base`}
           onClick={onClick}
         >
           {children}
         </button>
       ) : (
         <button
-          className={`btn bg-primary ${className} text-white max-w-xs w-full hover:bg-white hover:text-primary font-inter text-base`}
+          className={`btn bg-primary ${className} text-white max-w-sm w-full hover:bg-white hover:text-primary font-inter text-base`}
           onClick={onClick}
         >
           {children}
