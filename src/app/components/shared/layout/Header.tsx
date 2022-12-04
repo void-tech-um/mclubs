@@ -1,11 +1,13 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import AuthModal from "../AuthModal";
+import { useAuth } from "../../auth/AuthContextProvider";
 
 function Header() {
   const [showModal, setShowModal] = useState<boolean>(false);
   const [openMenu, setOpenMenu] = useState<boolean>(false);
-
+  const { user, logout } = useAuth();
+  console.log(user);
   const toggleMenu = (): void => {
     try {
       (document.activeElement as HTMLElement).blur();
@@ -58,22 +60,25 @@ function Header() {
             <li onClick={toggleMenu}>
               <Link to="/">Settings</Link>
             </li>
-            <li
-              onClick={() => {
-                toggleMenu();
-                setShowModal(true);
-              }}
-            >
-              <span>Login</span>
-            </li>
-            <li
-              onClick={() => {
-                toggleMenu();
-                setShowModal(true);
-              }}
-            >
-              <span>Signup</span>
-            </li>
+            {user ? (
+              <li
+                onClick={() => {
+                  logout();
+                  toggleMenu();
+                }}
+              >
+                <Link to="/">Logout</Link>
+              </li>
+            ) : (
+              <li
+                onClick={() => {
+                  toggleMenu();
+                  setShowModal(true);
+                }}
+              >
+                <span>Login/Signup</span>
+              </li>
+            )}
           </ul>
         </div>
       </div>
@@ -138,22 +143,25 @@ function Header() {
                 <li onClick={toggleMenu}>
                   <Link to="/">Settings</Link>
                 </li>
-                <li
-                  onClick={() => {
-                    toggleMenu();
-                    setShowModal(true);
-                  }}
-                >
-                  <span>Login</span>
-                </li>
-                <li
-                  onClick={() => {
-                    toggleMenu();
-                    setShowModal(true);
-                  }}
-                >
-                  <span>Signup</span>
-                </li>
+                {user ? (
+                  <li
+                    onClick={() => {
+                      logout();
+                      toggleMenu();
+                    }}
+                  >
+                    <Link to="/">Logout</Link>
+                  </li>
+                ) : (
+                  <li
+                    onClick={() => {
+                      toggleMenu();
+                      setShowModal(true);
+                    }}
+                  >
+                    <span>Login/Signup</span>
+                  </li>
+                )}
               </ul>
             </div>
           </div>

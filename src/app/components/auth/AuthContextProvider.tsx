@@ -26,9 +26,7 @@ const AuthContext = createContext<AuthContextTypes>({
 
 export function AuthContextProvider({ children }: LayoutProps) {
   const [user, setUser] = useState<any | null>(null);
-  console.log(user);
   const login = async (user: AccountTypes) => {
-    console.log(user);
     const res = await loginUser(user);
     localStorage.setItem("token", res.token);
     setUser(res.user);
