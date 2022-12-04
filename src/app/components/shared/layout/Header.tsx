@@ -35,9 +35,11 @@ function Header() {
         >
           Clubs
         </Link>
+
         <Link
           to="/clubs/new"
-          className="btn btn-ghost normal-case text-xl font-semibold text-black sm:inline-flex hidden"
+          className="btn btn-ghost normal-case font-semibold text-black sm:inline-flex 
+          hidden ml-auto border-2 border-black text-[15px] px-auto py-1 btn-sm sm:mr-2"
         >
           Register Your Club
         </Link>
