@@ -3,9 +3,9 @@ import AuthModal from "../../components/shared/AuthModal";
 import Card from "../../components/card/Card";
 import CardCarousel from "../../components/card/CardCarousel";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import {
-  faPlus
-} from "@fortawesome/free-solid-svg-icons";
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+import { faMagnifyingGlass } from "@fortawesome/free-solid-svg-icons";
+import { filterProps } from "framer-motion";
 interface CardObject {
   name: string;
   clubId: string;
@@ -17,6 +17,7 @@ function Home() {
   const arr: { name: string; desc: string }[] = [
     { name: "void", desc: "This is the void club" },
   ];
+  const [filter, setFilter] = useState<any>({});
   const info: CardObject[] = [
     {
       clubId: "VoidId",
@@ -133,24 +134,84 @@ function Home() {
           <div className="col-sm-6">Environmental Clubs</div>
         </div>
       </div> */}
-      <input type="text" placeholder="Search" className="input input-bordered input-white w-full max-w-xs ml-8 mt-10" />
-      <h1 className="text-primary ml-8 mt-10 text-small mb-4">Filters: 
-      <div className="dropdown">
-        <label tabIndex={0} className="btn m-1"><FontAwesomeIcon icon ={faPlus}/></label>
-         <ul tabIndex={0} className="dropdown-content menu p-2 shadow bg-base-100 rounded-box w-52">
-        <li><a>Tech</a></li>
-         <li><a>Fun</a></li>
-     </ul>
-  </div>
-</h1>
+      <div className="relative">
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className="absolute inset-0 left-11 my-auto pl-3"
+        />
+        <input
+          type="text"
+          placeholder="Search"
+          className="input input-bordered input-white w-full max-w-xs my-7 mx-10 pl-10"
+        />
+      </div>
+      <h1 className="text-primary ml-8 mt-10 text-small mb-4 font-bold">
+        Filters:
+        <div className="dropdown">
+          <label tabIndex={0} className="btn-ghost mx-2">
+            <FontAwesomeIcon icon={faPlus} className="primary font-bold" />
+          </label>
+          <ul
+            tabIndex={0}
+            className="dropdown-content menu p-2 bg-base-100 rounded-box w-100"
+          >
+            <li>
+              <div className="relative">
+                <FontAwesomeIcon
+                  icon={faMagnifyingGlass}
+                  className="absolute inset-0 left-3 my-auto pl-3"
+                />
+                <input
+                  type="text"
+                  placeholder="Search Topics"
+                  className="input input-bordered input-white w-small max-w-xs pl-7"
+                />
+              </div>
+            </li>
+            <li>
+              <div>
+                <input
+                  type="checkbox"
+                  checked={filter.tech}
+                  onClick={() => {
+                    setFilter((prev: any) => {
+                      return { ...prev, tech: !prev.tech };
+                    });
+                  }}
+                  className="checkbox checkbox-xs text-primary"
+                />
+                <a>Tech</a>
+              </div>
+            </li>
+            <li>
+              <div>
+                <input
+                  type="checkbox"
+                  checked
+                  className="checkbox checkbox-xs text-primary"
+                />
+                <a>Fun</a>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </h1>
 
-      <h2 className="text-primary ml-8 mt-10 text-xl"><strong>Top Picks</strong></h2>
+      <h2 className="text-primary ml-8 mt-10 text-xl">
+        <strong>Top Picks</strong>
+      </h2>
       <CardCarousel clubsInfo={info} />
-      <h3 className="text-primary ml-8 mt-10 text-xl"><strong>Perfect for Fall</strong></h3>
+      <h3 className="text-primary ml-8 mt-10 text-xl">
+        <strong>Perfect for Fall</strong>
+      </h3>
       <CardCarousel clubsInfo={info} />
-      <h4 className="text-primary ml-8 mt-10 text-xl"><strong>New Clubs</strong></h4>
+      <h4 className="text-primary ml-8 mt-10 text-xl">
+        <strong>New Clubs</strong>
+      </h4>
       <CardCarousel clubsInfo={info} />
-      <h5 className="text-primary ml-8 mt-10 text-xl"><strong>Environmental Clubs</strong></h5>
+      <h5 className="text-primary ml-8 mt-10 text-xl">
+        <strong>Environmental Clubs</strong>
+      </h5>
       <CardCarousel clubsInfo={info} />
     </div>
   );
