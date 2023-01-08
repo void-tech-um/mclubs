@@ -28,8 +28,8 @@ function Club() {
           <button className="btn w-[9rem] text-black bg-white mr-3 text-lg">Website </button>
         </div>
       </div>
-    <div className="grid grid-flow-col gap-8 h-screen ml-5 mt-12">
-      <div className="grid grid-flow-row col-span-8 h-2/5">
+    <div className="grid grid-flow-col gap-4 h-screen ml-5 mt-12">
+      <div className="grid grid-flow-row h-2/5 w-[900px]">
         <div className = "font-inter text-2xl font-medium row-span-1"> Tags:</div>
         <div className = "row-span-1 my-5">
           <button className="btn btn-circle w-1/6 text-black bg-tertiary mr-3 hover:bg-sky-100">Technology</button>
@@ -43,7 +43,7 @@ function Club() {
           We set up students for success by creating cross-functional teams that will allow them to explore their design, development, and management abilities while learning about the process of developing a functional application that solves a real-world problem. Students will have to undergo a development process that ranges from brainstorming, to development, then testing and finally, deployment. We also host multiple social and professional development events throughout the year that will allow you to make lifelong friends and connections!
         </p>
       </div>
-      <div className="col-span-7">
+      <div>
         <h1 className="font-inter font-medium text-2xl"> 
           Photos:
         </h1>
