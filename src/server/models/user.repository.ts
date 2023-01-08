@@ -6,9 +6,8 @@ import { User } from "./models";
  * @returns {Promise<User>} Created user or throw error if user already exists
  */
 export const createUser = async (user: User): Promise<User> => {
-  /** @todo Implement the function */
-  // Remove this return statement
   const newUser = await User.create(user);
+
   if (!newUser) {
     throw new Error("User already exists");
   }

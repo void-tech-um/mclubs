@@ -12,11 +12,6 @@ router.get("/", (req, res) => {
     url: req.originalUrl,
   });
 });
-router.post("/", async (req, res) => {
-  console.log(req.body);
-  const newUser = await db.user.createUser(req.body);
-  res.send(newUser);
-});
 
 router.use("/auth", authRouter);
 
