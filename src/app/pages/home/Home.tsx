@@ -19,6 +19,61 @@ function Home() {
     { name: "void", desc: "This is the void club" },
   ];
   const [filter, setFilter] = useState<any>({});
+  const filters_personal = [
+    {
+      name: "Favorite",
+      checked: false,
+    },
+
+    {
+      name: "Joined",
+      checked: false,
+    },
+  ];
+
+  const filters_time = [
+    {
+      name: "1-3 Hours Per Week",
+      checked: false,
+    },
+    {
+      name: "4-6 Hours Per Week",
+      checked: false,
+    },
+
+    {
+      name: "7+ Hours Per Week",
+      checked: false,
+    },
+  ];
+
+  const filters_topics = [
+    {
+      name: "Technology",
+      checked: false,
+    },
+
+    {
+      name: "Politics",
+      checked: false,
+    },
+
+    {
+      name: "Design",
+      checked: false,
+    },
+
+    {
+      name: "Engineering",
+      checked: false,
+    },
+
+    {
+      name: "Art",
+      checked: false,
+    },
+  ];
+
   const info: CardObject[] = [
     {
       clubId: "VoidId",
@@ -99,54 +154,21 @@ function Home() {
       image: "https://placeimg.com/400/225/arch",
     },
   ];
+
   return (
     //div for search bar
-    <div>
-      {/* {arr.map((club) => (
-        <div className="card w-80 bg-base-90 shadow-xl">
-          <figure>
-            <img src="https://placeimg.com/400/225/arch" alt="Shoes" />
-          </figure>
-          <div className="card-body">
-            <h2 className="card-title">
-              Shoes!
-              <div className="badge badge-secondary">NEW</div>
-            </h2>
-            <p>If a dog chews shoes whose shoes does he choose?</p>
-            <div className="card-actions justify-end">
-              <div className="badge badge-outline">Fashion</div>
-              <div className="badge badge-outline">Products</div>
-            </div>
-          </div>
-        </div>
-      ))}
-
-      <div>
-        <div className="topnav">
-          <a className="active" href="#home"></a>
-          <input type="text" placeholder="Search.."></input>
-        </div>
-        <div>Filters</div>
-        <div className="row">
-          <div className="col-sm-6">Top Picks</div>
-
-          <div className="col-sm-6">Perfect for Fall</div>
-          <div className="col-sm-6">New Clubs</div>
-          <div className="col-sm-6">Environmental Clubs</div>
-        </div>
-      </div> */}
-      <div>
-        <div className="relative">
-          <FontAwesomeIcon
-            icon={faMagnifyingGlass}
-            className="absolute inset-0 left-11 my-auto pl-3"
-          />
-          <input
-            type="text"
-            placeholder="Search"
-            className="input input-bordered input-white w-full max-w-xs my-7 mx-10 pl-10"
-          />
-        </div>
+    <div className="pl-10">
+      <div className="relative">
+        <FontAwesomeIcon
+          icon={faMagnifyingGlass}
+          className="absolute inset-0 left-11 my-auto pl-3"
+        />
+        <input
+          type="text"
+          placeholder="Search"
+          className="input input-bordered input-white w-full max-w-xs my-7 mx-10 pl-10"
+        />
+        <span>See All Clubs</span>
       </div>
 
       <div className="flex justify-between">
@@ -174,28 +196,42 @@ function Home() {
                 </div>
               </li>
               <li>
+                <div>Personal</div>
                 <div>
                   <input
                     type="checkbox"
-                    checked={filter.tech}
-                    onClick={() => {
-                      setFilter((prev: any) => {
-                        return { ...prev, tech: !prev.tech };
-                      });
-                    }}
                     className="checkbox checkbox-xs text-primary"
                   />
-                  <a className="font-normal">Tech</a>
+                  <a className="font-normal">Favorites</a>
                 </div>
               </li>
               <li>
                 <div>
                   <input
                     type="checkbox"
-                    checked
                     className="checkbox checkbox-xs text-primary"
                   />
-                  <a>Fun</a>
+                  <a className="font-normal">Joined</a>
+                </div>
+              </li>
+              <li>
+                <div>Time Commitment</div>
+                <div>
+                  <input
+                    type="checkbox"
+                    checked={filter.tech}
+                    className="checkbox checkbox-xs text-primary"
+                  />
+                  <a className="font-normal">1-3 Hours Per Week</a>
+                </div>
+              </li>
+              <li>
+                <div>
+                  <input
+                    type="checkbox"
+                    className="checkbox checkbox-xs text-primary"
+                  />
+                  <a className="font-normal">4-6 Hours Per Week</a>
                 </div>
               </li>
             </ul>
@@ -228,11 +264,6 @@ function Home() {
                   <input
                     type="button"
                     checked={filter.tech}
-                    onClick={() => {
-                      setFilter((prev: any) => {
-                        return { ...prev, tech: !prev.tech };
-                      });
-                    }}
                     className="button button-xs text-primary"
                   />
                   <a className="font-normal">Alphabetical</a>
@@ -252,11 +283,6 @@ function Home() {
                   <input
                     type="button"
                     checked={filter.tech}
-                    onClick={() => {
-                      setFilter((prev: any) => {
-                        return { ...prev, tech: !prev.tech };
-                      });
-                    }}
                     className="button button-xs text-primary"
                   />
                   <a className="font-normal">Popular</a>
@@ -276,11 +302,6 @@ function Home() {
                   <input
                     type="button"
                     checked={filter.tech}
-                    onClick={() => {
-                      setFilter((prev: any) => {
-                        return { ...prev, tech: !prev.tech };
-                      });
-                    }}
                     className="button button-xs text-primary"
                   />
                   <a className="font-normal">Recently Added</a>
