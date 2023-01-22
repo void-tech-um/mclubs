@@ -20,16 +20,18 @@ const AuthModal = ({ isOpen, onClose }: AuthModalProps) => {
     formState: { errors },
   } = useForm<FormValues>();
   const [isLogin, setIsLogin] = useState(true);
-  const { login, signup } = useAuth();
+  const { login, signup, user } = useAuth();
   const onSubmit = handleSubmit(async (data) => {
+    console.log(data);
     if (isLogin) {
       await login(data);
     } else {
       await signup(data);
     }
   });
+  console.log(user);
   return (
-    <div className={`modal cursor-pointer ${isOpen && "modal-open"}`}>
+    <div className={`modal cursor-pointer ${isOpen && !user && "modal-open"}`}>
       <div className="modal-box relative">
         <button
           onClick={onClose}

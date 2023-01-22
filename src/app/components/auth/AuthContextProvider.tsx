@@ -12,9 +12,9 @@ interface AccountTypes {
 
 interface AuthContextTypes {
   user: any | null;
-  login: (user: AccountTypes) => void;
+  login: (user: AccountTypes) => Promise<void>;
   logout: () => void;
-  signup: (user: AccountTypes) => void;
+  signup: (user: AccountTypes) => Promise<void>;
 }
 
 const AuthContext = createContext<AuthContextTypes>({
@@ -26,26 +26,25 @@ const AuthContext = createContext<AuthContextTypes>({
 
 export function AuthContextProvider({ children }: LayoutProps) {
   const [user, setUser] = useState<any | null>(null);
-  const login = async (user: AccountTypes) => {
+  async function login(user: AccountTypes) {
     const res = await loginUser(user);
     localStorage.setItem("token", res.token);
     setUser(res.user);
-  };
-  const logout = async () => {
+  }
+  async function logout() {
     localStorage.removeItem("token");
     setUser(null);
-  };
-  const signup = async (user: AccountTypes) => {
+  }
+  async function signup(user: AccountTypes) {
     const res = await signupUser(user);
     localStorage.setItem("token", res.token);
-    setUser(res.user);
-  };
+    setUser(res.createdUser);
+  }
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
+    if (token && token !== "undefined") {
       const user = parseJwt(token);
-
       setUser(user.user);
     }
   }, []);

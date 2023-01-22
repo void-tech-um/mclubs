@@ -18,6 +18,7 @@ export const createUserController = async (
   res: any
 ): Promise<void> => {
   const user = req.body;
+  user.username = user.email.split("@")[0];
   const createdUser = await model.createUser(user).catch(() => {
     return res.status(400).send({
       message: "User already exists",
@@ -42,6 +43,7 @@ export const createUserController = async (
  */
 export const loginController = async (req: any, res: any): Promise<void> => {
   const user = req.body;
+  user.username = user.email.split("@")[0];
   const loggedInUser = await model.userExists(user).catch(() => {
     return res.status(400).send({
       message: "User does not exist",

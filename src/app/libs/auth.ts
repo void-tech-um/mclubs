@@ -5,37 +5,37 @@ interface AccountTypes {
 
 export const signupUser = async (account: AccountTypes): Promise<any> => {
   const { email, password } = account;
-  const username = email.split("@")[0];
+  console.log("data for fetch", account);
   const res = await fetch("http://localhost:3001" + "/api/auth/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, username }),
+    body: JSON.stringify({ email, password }),
   });
   const data = await res.json();
+  console.log("data from fetch", data);
+
   return data;
 };
 
 export const loginUser = async (account: AccountTypes): Promise<any> => {
   const { email, password } = account;
-  const username = email.split("@")[0];
   const res = await fetch("http://localhost:3001" + "/api/auth/login", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
-    body: JSON.stringify({ email, password, username }),
+    body: JSON.stringify({ email, password }),
   });
   const data = await res.json();
-  console.log(data);
   return data;
 };
 
 export function parseJwt(token: string) {
-  var base64Url = token.split(".")[1];
-  var base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
-  var jsonPayload = decodeURIComponent(
+  const base64Url = token.split(".")[1];
+  const base64 = base64Url.replace(/-/g, "+").replace(/_/g, "/");
+  const jsonPayload = decodeURIComponent(
     window
       .atob(base64)
       .split("")

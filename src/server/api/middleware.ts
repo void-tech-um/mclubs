@@ -13,6 +13,7 @@ export const hashPassword = async (
   res: any,
   next: any
 ): Promise<void> => {
+  console.log("before hash", req.body);
   const salt = await bcrypt.genSalt(10);
   const hashedPassword = await bcrypt.hash(req.body.password, salt);
   req.body.password = hashedPassword;
@@ -26,7 +27,9 @@ export const hashPassword = async (
  * @param next Next
  */
 export const authenticateToken = (req: any, res: any, next: any) => {
+  console.log(req.headers);
   const authHeader = req.headers["authorization"];
+  console.log(authHeader);
   const token = authHeader && authHeader.split(" ")[1];
   if (token == null) return res.sendStatus(401);
 
