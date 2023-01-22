@@ -1,5 +1,6 @@
 import express from "express";
 import authRouter from "./routes/auth.routes";
+import clubRouter from "./routes/club.routes";
 import db from "../models";
 
 const router = express.Router();
@@ -14,5 +15,6 @@ router.get("/", (req, res) => {
 });
 
 router.use("/auth", authRouter);
+router.use("/clubs", clubRouter);
 
 export default router;
