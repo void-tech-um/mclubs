@@ -14,6 +14,21 @@ interface CardObject {
   image: string;
   favorite?: boolean;
 }
+
+const filters_time = [
+  "1-3 Hours Per Week",
+  "4-6 Hours Per Week",
+  "7+ Hours Per Week",
+];
+
+const filters_topics = [
+  "Technology",
+  "Politics",
+  "Design",
+  "Engineering",
+  "Art",
+  "Robotics",
+];
 function Home() {
   const arr: { name: string; desc: string }[] = [
     { name: "void", desc: "This is the void club" },
@@ -27,49 +42,6 @@ function Home() {
 
     {
       name: "Joined",
-      checked: false,
-    },
-  ];
-
-  const filters_time = [
-    {
-      name: "1-3 Hours Per Week",
-      checked: false,
-    },
-    {
-      name: "4-6 Hours Per Week",
-      checked: false,
-    },
-
-    {
-      name: "7+ Hours Per Week",
-      checked: false,
-    },
-  ];
-
-  const filters_topics = [
-    {
-      name: "Technology",
-      checked: false,
-    },
-
-    {
-      name: "Politics",
-      checked: false,
-    },
-
-    {
-      name: "Design",
-      checked: false,
-    },
-
-    {
-      name: "Engineering",
-      checked: false,
-    },
-
-    {
-      name: "Art",
       checked: false,
     },
   ];
@@ -180,7 +152,7 @@ function Home() {
             </label>
             <ul
               tabIndex={0}
-              className="dropdown-content menu p-2 bg-base-100 rounded-box w-100"
+              className="dropdown-content overflow-y-scroll menu p-2 bg-base-100 rounded-box h-50 w-100"
             >
               <li>
                 <div className="relative">
@@ -206,106 +178,32 @@ function Home() {
                 </div>
               </li>
               <li>
-                <div>
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-xs text-primary"
-                  />
-                  <a className="font-normal">Joined</a>
-                </div>
-              </li>
-              <li>
                 <div>Time Commitment</div>
-                <div>
-                  <input
-                    type="checkbox"
-                    checked={filter.tech}
-                    className="checkbox checkbox-xs text-primary"
-                  />
-                  <a className="font-normal">1-3 Hours Per Week</a>
-                </div>
+                {filters_time.map((item) => {
+                  return (
+                    <div key={item}>
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-xs text-primary"
+                      />
+                      <a className="font-normal">{item}</a>
+                    </div>
+                  );
+                })}
               </li>
               <li>
-                <div>
-                  <input
-                    type="checkbox"
-                    className="checkbox checkbox-xs text-primary"
-                  />
-                  <a className="font-normal">4-6 Hours Per Week</a>
-                </div>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div className="text-primary text-small font-bold mr-8">
-          Sort
-          <div className="dropdown dropdown-end">
-            <label tabIndex={0} className="btn-ghost mx-2">
-              <FontAwesomeIcon
-                icon={faChevronDown}
-                className="primary font-bold"
-              />
-            </label>
-            <ul
-              tabIndex={0}
-              className="dropdown-content menu p-2 bg-base-100 rounded-box w-100"
-            >
-              <li>
-                <div>
-                  <button className="btn btn-circle btn-outline btn-xs">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-2 w-2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    ></svg>
-                  </button>
-                  <input
-                    type="button"
-                    checked={filter.tech}
-                    className="button button-xs text-primary"
-                  />
-                  <a className="font-normal">Alphabetical</a>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <button className="btn btn-circle btn-outline btn-xs">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-2 w-2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    ></svg>
-                  </button>
-                  <input
-                    type="button"
-                    checked={filter.tech}
-                    className="button button-xs text-primary"
-                  />
-                  <a className="font-normal">Popular</a>
-                </div>
-              </li>
-              <li>
-                <div>
-                  <button className="btn btn-circle btn-outline btn-xs">
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      className="h-2 w-2"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                    ></svg>
-                  </button>
-                  <input
-                    type="button"
-                    checked={filter.tech}
-                    className="button button-xs text-primary"
-                  />
-                  <a className="font-normal">Recently Added</a>
-                </div>
+                <div>Topics</div>
+                {filters_topics.map((item) => {
+                  return (
+                    <div key={item}>
+                      <input
+                        type="checkbox"
+                        className="checkbox checkbox-xs text-primary"
+                      />
+                      <a className="font-normal">{item}</a>
+                    </div>
+                  );
+                })}
               </li>
             </ul>
           </div>
@@ -328,6 +226,28 @@ function Home() {
         <strong>Environmental Clubs</strong>
       </h5>
       <CardCarousel clubsInfo={info} />
+      <footer className="footer p-10 bg-neutral text-neutral-content">
+        <div>
+          <span className="footer-title">Services</span>
+          <a className="link link-hover">Branding</a>
+          <a className="link link-hover">Design</a>
+          <a className="link link-hover">Marketing</a>
+          <a className="link link-hover">Advertisement</a>
+        </div>
+        <div>
+          <span className="footer-title">Company</span>
+          <a className="link link-hover">About us</a>
+          <a className="link link-hover">Contact</a>
+          <a className="link link-hover">Jobs</a>
+          <a className="link link-hover">Press kit</a>
+        </div>
+        <div>
+          <span className="footer-title">Legal</span>
+          <a className="link link-hover">Terms of use</a>
+          <a className="link link-hover">Privacy policy</a>
+          <a className="link link-hover">Cookie policy</a>
+        </div>
+      </footer>
     </div>
   );
 }
