@@ -1,5 +1,6 @@
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
+import * as model from "../models/club.repository";
 
 /**
  * @desc Hash a password
@@ -42,4 +43,19 @@ export const authenticateToken = (req: any, res: any, next: any) => {
       next();
     }
   );
+};
+//must be a called after authenticateToken
+export const checkClubOwner = async (req: any, res: any, next: any) => {
+  const { clubId } = req.params;
+  const club = await model.getClub(clubId).catch(() => {
+    return res.status(400).send({
+      message: "Club does not exist",
+    });
+  });
+  if (club.club.owner !== req.user.username) {
+    return res.status(403).send({
+      message: "You are not the owner of this club",
+    });
+  }
+  next();
 };

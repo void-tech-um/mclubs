@@ -30,6 +30,19 @@ export const getClub = async (club: string): Promise<Club | null> => {
   return found; // This is to make the compiler happy
 };
 
+export const updateClub = async (club: Club): Promise<boolean> => {
+  await Club.update(club, { where: { clubUid: club.clubUid } }).catch((e) => {
+    console.log(e);
+    return false;
+  });
+
+  return true;
+};
+
+export const queryClubs = async (query: any): Promise<Club[] | null> => {
+  const found = await Club.findAll({ where: query });
+  return found;
+};
 export const clubExists = async (club: Club): Promise<Club | null> => {
   return null;
 };
