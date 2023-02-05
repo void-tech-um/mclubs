@@ -1,5 +1,6 @@
 import express from "express";
 import authRouter from "./routes/auth.routes";
+import clubRouter from "./routes/club.routes";
 import db from "../models";
 
 const router = express.Router();
@@ -12,12 +13,8 @@ router.get("/", (req, res) => {
     url: req.originalUrl,
   });
 });
-router.post("/", async (req, res) => {
-  console.log(req.body);
-  const newUser = await db.user.createUser(req.body);
-  res.send(newUser);
-});
 
 router.use("/auth", authRouter);
+router.use("/clubs", clubRouter);
 
 export default router;
