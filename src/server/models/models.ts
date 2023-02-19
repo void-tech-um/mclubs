@@ -54,6 +54,7 @@ export class Club extends Model<
   declare bannerPhoto: string;
   declare dues: number;
   declare duesFrequency: string;
+  declare popularity: number;
   // declare createdAt: CreationOptional<Date>;
   // declare updatedAt: CreationOptional<Date>;
 
@@ -278,6 +279,10 @@ Club.init(
     },
     duesFrequency: {
       type: DataTypes.STRING,
+      allowNull: true,
+    },
+    popularity: {
+      type: DataTypes.INTEGER,
       allowNull: true,
     },
   },
