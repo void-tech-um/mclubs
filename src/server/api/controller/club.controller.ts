@@ -11,6 +11,7 @@ export const createClubController = async (
 ): Promise<void> => {
   const club = req.body;
   console.log(club);
+  club.popularity = 0;
   const createdClub = await model.createClub(club).catch((e) => {
     console.log(e);
     return res.status(400).send({
