@@ -20,6 +20,7 @@ export const getClubs = async (): Promise<Club[] | null> => {
   /** @todo Implement the function */
   // Remove this return statement
   const found = await Club.findAll();
+  // console.log("HERE IS THE FOUND CLUBS", found);
   return found; // This is to make the compiler happy
 };
 

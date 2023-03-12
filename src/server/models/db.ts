@@ -14,7 +14,7 @@ const sequelize = new Sequelize(
 );
 
 /** @desc Test connection to database */
-sequelize.sync({ force: true }).then((s) => {
+sequelize.sync().then((s) => {
   s.authenticate()
     .then(() => {
       console.log("Connection has been established successfully.");
